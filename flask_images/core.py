@@ -1,7 +1,6 @@
 from __future__ import division
 
 from cStringIO import StringIO
-from subprocess import call
 from urllib import urlencode, quote as urlquote
 from urllib2 import urlopen
 from urlparse import urlparse
@@ -318,7 +317,7 @@ class Images(object):
                     fh = open(tmp_path, 'wb')
                     fh.write(remote_file)
                     fh.close()
-                call(['mv', tmp_path, path])
+                os.rename(tmp_path, path)
         else:
             path = self.find_img(path)
             if not path:
